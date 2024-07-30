@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Prediction</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bill Prediction</h1>
+        <div class="form-group">
+            <label for="congress">Congress Number:</label>
+            <select id="congress">
+                <option value="">Select Congress</option>
+                <script>
+                    for (let i = 102; i <= 118; i++) {
+                        document.write('<option value="' + i + '">' + i + '</option>');
+                    }
+                </script>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="billType">Bill Type:</label>
+            <select id="billType">
+                <option value="">Select Bill Type</option>
+                <option value="HR">HR</option>
+                <option value="HRES">HRES</option>
+                <option value="HCONRES">HCONRES</option>
+                <option value="HJRES">HJRES</option>
+                <option value="S">S</option>
+                <option value="SJRES">SJRES</option>
+                <option value="SCONRES">SCONRES</option>
+                <option value="SRES">SRES</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="billNumber">Bill Number:</label>
+            <input type="text" id="billNumber" placeholder="Enter Bill Number">
+        </div>
+        <button onclick="predict()">Predict!</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

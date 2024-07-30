@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="loading-container">
+        <h2>Loading...</h2>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <p id="progress-text">0%</p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        socket.on('update_progress', function(data) {
+            const progress = data.progress;
+            document.getElementById('progress').style.width = progress + '%';
+            document.getElementById('progress-text').innerText = progress + '%';
+        });
+
+        socket.on('redirect', function(data) {
+            window.location.href = data.url;
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const congress = urlParams.get('congress');
+            const billType = urlParams.get('billType');
+            const billNumber = urlParams.get('billNumber');
+        });
+    </script>
+</body>
+</html>
